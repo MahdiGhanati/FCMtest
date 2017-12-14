@@ -7,6 +7,8 @@
 
 # Java class files
 *.class
+# Specific to this project
+app/google-services.json
 
 # Generated files
 bin/
