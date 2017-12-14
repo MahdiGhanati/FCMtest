@@ -5,8 +5,11 @@
 2. Obtain `google-services.json` file from https://console.firebase.google.com and paste it in `app/` folder.
 3. Run the project in android studio.
 
+The screenshot of sending the push notification from Firebase Console:
 
-The screenshot on Samsung galaxy Duos (Android version 4)
+[![fcm_console.png](https://s33.postimg.org/rdreipcxb/fcm_console.png)](https://postimg.org/image/4catcyd9n/)
+
+The screenshot on Samsung galaxy Duos (Android version 4):
 
 [![Screenshot_2017-12-14-17-14-01.png](https://s33.postimg.org/u7ujvrhjz/Screenshot_2017-12-14-17-14-01.png)](https://postimg.org/image/m2chxltaz/)
 
