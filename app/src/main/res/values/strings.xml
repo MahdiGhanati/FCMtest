@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">FCMtest</string>
+    <string name="channel_name">ChannelName1</string>
 </resources>
