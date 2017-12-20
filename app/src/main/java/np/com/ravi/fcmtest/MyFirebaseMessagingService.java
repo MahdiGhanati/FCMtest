@@ -62,33 +62,33 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         Uri soundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            // Sets an ID for the notification, so it can be updated.
-            int notifyID = 1;
-            String CHANNEL_ID = "my_channel_01";// The id of the channel.
-            CharSequence name = getString(R.string.channel_name);// The user-visible name of the channel.
-            int importance = NotificationManager.IMPORTANCE_HIGH;
-
-            NotificationChannel mChannel = new NotificationChannel(CHANNEL_ID, name, importance);
-
-            NotificationManager mNotificationManager =
-                    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-            mNotificationManager.createNotificationChannel(mChannel);
-
-
-            // Create a notification and set the notification channel.
-            Notification notification =
-                    new Notification.Builder(this, CHANNEL_ID)
-                    .setContentTitle("FCM Test")
-                    .setContentText(message)
-                    .setAutoCancel(true)
-                    .setSmallIcon(R.mipmap.ic_launcher_round)
-                    .setChannelId(CHANNEL_ID)
-                    .setContentIntent(pendingIntent)
-                    .build();
-
-            //post notification to notification bar
-            mNotificationManager.notify(notifyID, notification);
+//            // Sets an ID for the notification, so it can be updated.
+//            int notifyID = 1;
+//            String CHANNEL_ID = "my_channel_01";// The id of the channel.
+//            CharSequence name = getString(R.string.channel_name);// The user-visible name of the channel.
+//            int importance = NotificationManager.IMPORTANCE_HIGH;
+//
+//            NotificationChannel mChannel = new NotificationChannel(CHANNEL_ID, name, importance);
+//
+//            NotificationManager mNotificationManager =
+//                    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+//
+//            mNotificationManager.createNotificationChannel(mChannel);
+//
+//
+//            // Create a notification and set the notification channel.
+//            Notification notification =
+//                    new Notification.Builder(this, CHANNEL_ID)
+//                    .setContentTitle("FCM Test")
+//                    .setContentText(message)
+//                    .setAutoCancel(true)
+//                    .setSmallIcon(R.mipmap.ic_launcher_round)
+//                    .setChannelId(CHANNEL_ID)
+//                    .setContentIntent(pendingIntent)
+//                    .build();
+//
+//            //post notification to notification bar
+//            mNotificationManager.notify(notifyID, notification);
 
         } else {
 
