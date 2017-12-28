@@ -1,14 +1,12 @@
 package np.com.ravi.fcmtest;
 
-import android.app.Notification;
-import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.media.RingtoneManager;
 import android.net.Uri;
-import android.os.Build;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
@@ -46,68 +44,37 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         createNotification(remoteMessage.getNotification().getBody());
 
-
     }
 
     private void createNotification(String message) {
-     //Create Notification
+        //Create Notification
         Log.d("On", "createNotification");
 
         //for when the notification is tapped we are directed to the MainActivity
         Intent intent = new Intent(this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra("message", message);
+
         PendingIntent pendingIntent = PendingIntent.getActivity(this,
                 0, intent, PendingIntent.FLAG_ONE_SHOT);
 
-        Uri soundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+        Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//            // Sets an ID for the notification, so it can be updated.
-//            int notifyID = 1;
-//            String CHANNEL_ID = "my_channel_01";// The id of the channel.
-//            CharSequence name = getString(R.string.channel_name);// The user-visible name of the channel.
-//            int importance = NotificationManager.IMPORTANCE_HIGH;
-//
-//            NotificationChannel mChannel = new NotificationChannel(CHANNEL_ID, name, importance);
-//
-//            NotificationManager mNotificationManager =
-//                    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-//
-//            mNotificationManager.createNotificationChannel(mChannel);
-//
-//
-//            // Create a notification and set the notification channel.
-//            Notification notification =
-//                    new Notification.Builder(this, CHANNEL_ID)
-//                    .setContentTitle("FCM Test")
-//                    .setContentText(message)
-//                    .setAutoCancel(true)
-//                    .setSmallIcon(R.mipmap.ic_launcher_round)
-//                    .setChannelId(CHANNEL_ID)
-//                    .setContentIntent(pendingIntent)
-//                    .build();
-//
-//            //post notification to notification bar
-//            mNotificationManager.notify(notifyID, notification);
+        //setting notification attributes
+        NotificationCompat.Builder notificationBuilder =
+                new NotificationCompat.Builder(this)
+                        .setSmallIcon(R.mipmap.ic_launcher_round)
+                        .setContentTitle(String.valueOf(R.string.app_name))
+                        .setContentText(message)
+                        .setAutoCancel(false)
+                        .setSound(soundUri)
+                        .setContentIntent(pendingIntent);
 
-        } else {
+        NotificationManager notificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-            //setting notification attributes
-            android.support.v4.app.NotificationCompat.Builder notificationBuilder =
-                    new android.support.v4.app.NotificationCompat.Builder(this)
-                    .setSmallIcon(R.mipmap.ic_launcher_round)
-                    .setContentTitle("FCM Test")
-                    .setContentText(message)
-                    .setAutoCancel(true)
-                    .setSound(soundUri)
-                    .setContentIntent(pendingIntent);
-
-            NotificationManager notificationManager =
-                    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-            //post notification to notification bar
-            notificationManager.notify(0, notificationBuilder.build());
-        }
+        //post notification to notification bar
+        notificationManager.notify(0, notificationBuilder.build());
 
     }
 }

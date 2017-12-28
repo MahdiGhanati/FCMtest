@@ -1,18 +1,12 @@
 package np.com.ravi.fcmtest;
 
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.content.Context;
-import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.Toast;
-
-import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.messaging.FirebaseMessaging;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+
+    TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
